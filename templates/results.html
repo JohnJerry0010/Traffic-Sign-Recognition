@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Detection Result</h1>
+    </header>
+
+    <div class="result-container">
+        <h2>Recognized Sign:</h2>
+        <p>{{ sign_name }}</p>
+        <h2>Confidence:</h2>
+        <p>{{ confidence }}%</p>
+        <button onclick="window.location.href='/'">Back to Home</button>
+    </div>
+</body>
+</html>

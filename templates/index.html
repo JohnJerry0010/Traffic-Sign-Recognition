@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Sign Recognition</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .video-background {
+            position: relative;
+            height: 70vh;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .video-overlay h2 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .video-overlay p {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        .statistics {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .stat {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .branding {
+            position: relative;
+        }
+
+        .branding img {
+            width: 100%;
+            height: 50vh;
+            object-fit: cover;
+        }
+
+        .branding-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+
+        .branding-overlay h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .branding-overlay button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .faq {
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            color: #333;
+        }
+
+        .faq ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .faq ul li {
+            padding: 15px;
+            font-size: 1.3em;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq ul li:hover {
+            background-color: #e0e0e0;
+        }
+
+        .faq ul li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #333;
+            transition: height 0.3s ease;
+        }
+
+        .faq ul li:hover::before {
+            height: 100%;
+        }
+
+        .faq ul li .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq ul li.active .answer {
+            max-height: 500px;
+            padding-top: 10px;
+        }
+
+        .faq ul li .question {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq ul li .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq ul li.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        header {
+            background-color: white;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+        }
+    
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            
+        }
+        .branding-overlay button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 50px;
+        }
+
+        .stat h3 {
+            color: red;
+            font-size: 2em; 
+        }
+        }
+    
+        .branding-overlay button:hover {
+            background-color: darkred;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const questions = document.querySelectorAll(".faq ul li");
+
+            questions.forEach(question => {
+                question.addEventListener("click", () => {
+                    question.classList.toggle("active");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Traffic Sign Recognition</h1>
+    </header>
+
+    <section class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="./static/videos/traffic.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay">
+            <h2>Sign Recognition</h2>
+            <p>Transforming your camera into a traffic sign detective!</p>
+        </div>
+    </section>
+
+    <section class="statistics">
+        <div class="stat">
+            <h3>99%</h3>
+            <p>Detection Accuracy</p>
+        </div>
+        <div class="stat">
+            <h3>5s</h3>
+            <p>Response Time</p>
+        </div>
+        <div class="stat">
+            <h3>43</h3>
+            <p>Signs Detected</p>
+        </div>
+    </section>
+
+    <section class="branding">
+        <img src="./static/images/road.jpg" alt="Branding Image">
+        <div class="branding-overlay">
+            <h2>Unleash the Power of Recognition</h2>
+            <a href="/detect">
+                <button>Start Detecting Now!</button>
+            </a>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2>Curious Minds Ask</h2>
+        <ul>
+            <li>
+                <div class="question">
+                    How does the detection work?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="answer">
+                    The detection system processes images through a Convolutional Neural Network (CNN) model trained on a dataset containing images of various traffic signs. Multiple convolutional layers extract features from the images, followed by pooling layers that generalize the features and reduce overfitting. Finally, dense layers classify the signs into one of the recognized classes.
+                </div>
+            </li>
+            <li>
+                <div class="question">
+                    What types of signs can it recognize?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="answer">
+                    The system can recognize 43 different types of traffic signs, trained on a dataset representing these classes. These signs include speed limits, warnings, and prohibitions, among others.
+                </div>
+            </li>
+            <li>
+                <div class="question">
+                    Is it easy to use?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="answer">
+                    Yes, the system is designed to be user-friendly. It can detect traffic signs in real-time using images captured by a camera. The preprocessing and detection processes are automated, so users only need to provide an image or a video feed for the system to start recognizing signs.
+                </div>
+            </li>
+            <li>
+                <div class="question">
+                    Do I need special equipment?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="answer">
+                    No special equipment is required. The system uses standard camera feeds or pre-recorded images to detect traffic signs. It runs on any standard computing setup with a capable processor and some memory.
+                </div>
+            </li>
+            <li>
+                <div class="question">
+                    Can it work in low light?
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="answer">
+                    Yes, the system includes preprocessing steps like converting images to grayscale and equalizing the lighting, which helps it maintain accuracy even in low-light conditions. However, the quality of the detection may vary depending on how low the light is, as extreme darkness may still pose challenges.
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2024 Traffic Sign Recognition. All rights reserved.</p>
+    </footer>
+</body>
+</html>
